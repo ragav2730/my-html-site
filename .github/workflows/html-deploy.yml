@@ -1,0 +1,21 @@
+name: HTML CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Validate HTML file exists
+      run: |
+        if [ ! -f index.html ]; then
+          echo "index.html not found!"
+          exit 1
+        fi
+        echo "HTML file exists. Build passed."
